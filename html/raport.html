@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Raport Online SMKN 1 Katapang</title>
+    <link rel="stylesheet" href="/Ujikom/css/raport.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <ul>
+                <li><a href="/Ujikom/html/dashboard.html">Beranda</a></li>
+                <li class="dropdown">
+                    <a href="#">Sekolah</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://www.smkn1katapang.sch.id/about/">Profil Sekolah</a></li>
+                        <li><a href="https://smkn1katapang.id/">Informasi</a></li>
+                        <li><a href="https://smkn1katapang-bdg.sch.id/home">Berita</a></li>
+                        <li><a href="https://www.smkn1katapang.sch.id/">Update PPDB</a></li>
+                    </ul>
+                </li>
+                <li><a href="/Ujikom/html/Pelajaran.html">Pelajaran</a></li>
+                <li><a href="/Ujikom/html/raport.html" class="active">Raport</a></li>
+                <li><a href="/Ujikom/html/guru.html">Guru</a></li>
+                <li><a href="/Ujikom/html/login.html">Login</a></li>
+            </ul>
+            <div class="burger-menu" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="logo-section">
+                <span class="logo-text">Rapot Online</span>
+                <div class="logo">
+                    <img src="/Ujikom/poto/115-SMKN_1_KATAPANG.png" alt="Logo">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Sistem Raport Online SMKN 1 Katapang</h1>
+        
+        <div id="loginForm">
+            <h2>Login Siswa</h2>
+            <form id="studentLogin">
+                <input type="text" id="nis" placeholder="Nomor Induk Siswa" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p id="loginMessage"></p>
+        </div>
+
+        <div id="reportCard" style="display: none;">
+            <h2>Pencarian Raport Berhasil</h2>
+            <div id="studentInfo">
+                <img id="studentPhoto" src="placeholder.jpg" alt="Foto Siswa">
+                <p id="studentName"></p>
+                <p id="studentNISN"></p>
+            </div>
+
+            <div id="reportSelection">
+                <h3>Pilih Raport:</h3>
+                <select id="reportSelect"></select>
+            </div>
+
+            <div id="reportContent" style="display: none;">
+                <h2>Laporan Pencapaian Kompetensi Peserta Didik SMK Negeri 1 Katapang</h2>
+                
+                <div id="studentDetails">
+                    <p><strong>Nama Peserta Didik:</strong> <span id="fullName"></span></p>
+                    <p><strong>NISN:</strong> <span id="nisn"></span></p>
+                    <p><strong>NIS:</strong> <span id="nis"></span></p>
+                    <p><strong>Tempat, Tanggal Lahir:</strong> <span id="birthInfo"></span></p>
+                    <p><strong>Jenis Kelamin:</strong> <span id="gender"></span></p>
+                    <p><strong>Agama:</strong> <span id="religion"></span></p>
+                    <p><strong>Status dalam Keluarga:</strong> <span id="familyStatus"></span></p>
+                    <p><strong>Anak ke-:</strong> <span id="childNumber"></span></p>
+                    <p><strong>Alamat Peserta Didik:</strong> <span id="address"></span></p>
+                    <p><strong>Nomor Telepon Rumah:</strong> <span id="phoneNumber"></span></p>
+                    <p><strong>Sekolah Asal:</strong> <span id="previousSchool"></span></p>
+                    <p><strong>Diterima di Sekolah ini di Kelas:</strong> <span id="acceptedClass"></span></p>
+                    <p><strong>Pada Tanggal:</strong> <span id="acceptanceDate"></span></p>
+                </div>
+
+                <div id="parentInfo">
+                    <h3>Data Orang Tua</h3>
+                    <p><strong>Nama Ayah:</strong> <span id="fatherName"></span></p>
+                    <p><strong>Nama Ibu:</strong> <span id="motherName"></span></p>
+                    <p><strong>Alamat Orang Tua:</strong> <span id="parentAddress"></span></p>
+                    <p><strong>Nomor Telepon Rumah:</strong> <span id="parentPhoneNumber"></span></p>
+                    <p><strong>Pekerjaan Ayah:</strong> <span id="fatherOccupation"></span></p>
+                    <p><strong>Pekerjaan Ibu:</strong> <span id="motherOccupation"></span></p>
+                </div>
+
+                <div id="guardianInfo">
+                    <h3>Data Wali Peserta Didik</h3>
+                    <p><strong>Nama Wali:</strong> <span id="guardianName"></span></p>
+                    <p><strong>Alamat Wali:</strong> <span id="guardianAddress"></span></p>
+                    <p><strong>Nomor Telepon Rumah Wali:</strong> <span id="guardianPhoneNumber"></span></p>
+                    <p><strong>Pekerjaan Wali:</strong> <span id="guardianOccupation"></span></p>
+                </div>
+
+                <div id="academicGrades">
+                    <h3>Nilai Akademik</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Mata Pelajaran</th>
+                                <th>Nilai</th>
+                                <th>Catatan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="gradesTableBody">
+                            <!-- Grades will be inserted here by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="extracurricular">
+                    <h3>Ekstrakurikuler</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Kegiatan Ekstrakurikuler</th>
+                                <th>Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tbody id="extracurricularTableBody">
+                            <!-- Extracurricular activities will be inserted here by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="attendance">
+                    <h3>Ketidakhadiran</h3>
+                    <p>Sakit: <span id="sickDays"></span> hari</p>
+                    <p>Izin: <span id="permissionDays"></span> hari</p>
+                    <p>Tanpa Keterangan: <span id="absentDays"></span> hari</p>
+                </div>
+
+                <div id="pancasilaProfile">
+    <h3>Laporan Project Penguatan Profil Pelajar Pancasila</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Dimensi</th>
+                <th>Perkembangan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Kemampuan Kolaborasi</td>
+                <td id="collaboration"></td>
+            </tr>
+            <tr>
+                <td>Bernalar Kritis</td>
+                <td id="criticalThinking"></td>
+            </tr>
+            <tr>
+                <td>Kreativitas</td>
+                <td id="creativity"></td>
+            </tr>
+            <tr>
+                <td>Kemandirian</td>
+                <td id="independence"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Perkembangan Karakter</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Dimensi</th>
+                <th>Perkembangan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Beriman dan Bertakwa</td>
+                <td id="faithDevelopment"></td>
+            </tr>
+            <tr>
+                <td>Berkebinekaan Global</td>
+                <td id="globalDiversity"></td>
+            </tr>
+            <tr>
+                <td>Bernalar Kritis</td>
+                <td id="criticalThinkingCharacter"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+                <div id="processNotes">
+                    <h3>Catatan Proses</h3>
+                    <p id="processNotesContent"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <h1>SMK Negeri 1 Katapang</h1>
+        <div class="footer-nav">
+            <a href="/Ujikom/html/saran dan pengaduan.html">Saran</a>
+            <a href="https://www.smkn1katapang.sch.id">Sekolah</a>
+            <a href="https://www.instagram.com/syann_n/">Admin</a>
+        </div>
+        <h3>Connect with us</h3>
+        <div class="social-icons">
+            <a href="https://instagram.com/smkn1katapang/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@smkn1katapang242" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@smkn1katapang" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.facebook.com/groups/smkn1katapang" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://whatsapp.com" target="_blank" aria-label="Whatsapp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p>Copyright 2024, SMK Negeri 1 Katapang. Hak cipta dilindungi undang-undang.</p>
+    </footer>
+
+    <script src="/Ujikom/js/PilihRaport.js"></script>
+    <script src="/Ujikom/js/raport.js"></script>
+</body>
+</html>
+
